@@ -6,5 +6,4 @@
     immediate: "{{ item.immediate | default(True) }}"
     permanent: "{{ item.permanent | default(False) }}"
     state: "{{ item.state }}"
-  with_items: "{{ shhirose_firewalld.ports | default([]) }}"
-
+  with_items: "{{ firewalld.ports | default([]) }}"

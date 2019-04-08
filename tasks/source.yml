@@ -3,7 +3,7 @@
   shell: firewall-cmd --list-sources{% if item.zone is defined %} --zone={{ item.zone }}{% endif %}{% if item.permanent | default(False) %} --permanent{% endif %}
   register: sources_list
   when: item.immediate | default(True) or item.permanent | default(False)
-  with_items: "{{ shhirose_firewalld.sources | default([]) }}"
+  with_items: "{{ firewalld.sources | default([]) }}"
   changed_when: False
 
 # firwalld module is not supported non-permanent of source
@@ -26,4 +26,4 @@
     permanent: "{{ item.permanent | default(omita) }}"
     state: "{{ item.state }}"
   when: item.permanent | default(False)
-  with_items: "{{ shhirose_firewalld.sources | default([]) }}"
+  with_items: "{{ firewalld.sources | default([]) }}"

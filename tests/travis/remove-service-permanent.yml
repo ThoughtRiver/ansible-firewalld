@@ -4,7 +4,7 @@
   roles:
     - ../../../ansible-firewalld
   vars:
-    - shhirose_firewalld:
+    - firewalld:
         services:
             - service: http
               zone: test02

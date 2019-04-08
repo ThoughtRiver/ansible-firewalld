@@ -4,7 +4,7 @@
   roles:
     - ../../../ansible-firewalld
   vars:
-    - shhirose_firewalld:
+    - firewalld:
         forward_ports:
             - port: "14001"
               proto: tcp

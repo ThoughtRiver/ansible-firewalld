@@ -12,7 +12,7 @@ None
 ## Role Variables Sample
 
 ```yaml
-shhirose_firewalld:
+firewalld:
   default_zone: public
 
   zones:
@@ -181,7 +181,7 @@ None
   roles:
      - { role: shhirose.firewalld }
   vars:
-    shhirose_firewalld:
+    firewalld:
       services:
         - service: http
           zone: public

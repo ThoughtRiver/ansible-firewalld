@@ -4,7 +4,7 @@
   roles:
     - ../../../ansible-firewalld
   vars:
-    - shhirose_firewalld:
+    - firewalld:
         masquerades:
             - masquerade: no
               zone: test02

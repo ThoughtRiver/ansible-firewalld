@@ -3,7 +3,7 @@
   shell: firewall-cmd --list-forward-ports{% if item.zone is defined %} --zone={{ item.zone }}{% endif %}{% if item.permanent | default(False) %} --permanent{% endif %}
   register: forward_port_list
   when: item.immediate | default(True) or item.permanent | default(False)
-  with_items: "{{ shhirose_firewalld.forward_ports | default([]) }}"
+  with_items: "{{ firewalld.forward_ports | default([]) }}"
   changed_when: False
 
 - name: Add forward-port
@@ -27,4 +27,3 @@
   when: item.item.state == "disabled" and item.item.permanent | default(False) and 'port={0}:proto={1}:toport={2}:toaddr={3}'.format(item.item.port, item.item.proto, item.item.toport, item.item.toaddr) in item.stdout
   with_items: "{{ forward_port_list.results | default([]) }}"
   notify: Reload firewalld
-

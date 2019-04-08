@@ -4,5 +4,5 @@
   roles:
     - ../../../ansible-firewalld
   vars:
-    - shhirose_firewalld:
+    - firewalld:
         default_zone: home

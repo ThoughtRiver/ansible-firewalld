@@ -4,7 +4,7 @@
   roles:
     - ../../../ansible-firewalld
   vars:
-    - shhirose_firewalld:
+    - firewalld:
         interfaces:
             - interface: eth902
               zone: test02

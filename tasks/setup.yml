@@ -1,4 +1,5 @@
 ---
+
 - name: Get current zones
   shell: firewall-cmd --get-zones --permanent
   register: zone_list
@@ -8,9 +9,9 @@
   shell: firewall-cmd --new-zone={{ item.zone }} --permanent
   register: required_force_restart
   when: item.zone not in zone_list.stdout and item.state == 'enabled'
-  with_items: "{{ shhirose_firewalld.zones | default([]) }}"
+  with_items: "{{ firewalld.zones | default([]) }}"
   notify: Reload firewalld
- 
+
 - name: Force restart firewalld
   shell: firewall-cmd --reload
   when: required_force_restart.changed
@@ -38,5 +39,5 @@
 - name: Delete zone
   shell: firewall-cmd --delete-zone={{ item.zone }} --permanent
   when: item.zone in zone_list.stdout and item.state == 'disabled'
-  with_items: "{{ shhirose_firewalld.zones | default([]) }}"
+  with_items: "{{ firewalld.zones | default([]) }}"
   notify: Reload firewalld

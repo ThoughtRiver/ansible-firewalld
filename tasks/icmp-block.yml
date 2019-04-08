@@ -3,7 +3,7 @@
   shell: firewall-cmd --list-icmp-blocks{% if item.zone is defined %} --zone={{ item.zone }}{% endif %}{% if item.permanent | default(False) %} --permanent{% endif %}
   register: icmp_block_list
   when: item.immediate | default(True) or item.permanent | default(False)
-  with_items: "{{ shhirose_firewalld.icmp_blocks | default([]) }}"
+  with_items: "{{ firewalld.icmp_blocks | default([]) }}"
   changed_when: False
 
 - name: Add icmp-block
