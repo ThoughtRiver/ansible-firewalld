@@ -1,9 +1,10 @@
 ---
 
 - name: check support OS
-  debug:
-    msg: "This OS is not supported"
-  failed_when: ansible_os_family not in ["RedHat", "Debian"]
+  assert:
+    that:
+      - ansible_os_family in ["RedHat", "Debian"]
+    fail_msg: "This OS is not supported"
   tags:
     - firewalld
     - system
